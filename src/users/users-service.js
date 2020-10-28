@@ -5,12 +5,12 @@ const bcrypt = require("bcryptjs");
 const UsersService = {
   getUserId(db, user) {
     return db
-      .from("users AS usr")
+      .from("budget_users AS usr")
       .select("usr.id", "usr.user_name", "usr.full_name")
       .where("usr.user_name", user);
   },
   hasUserWithUserName(db, user_name) {
-    return db("users")
+    return db("budget_users")
       .where({ user_name })
       .first()
       .then(user => !!user);
@@ -18,7 +18,7 @@ const UsersService = {
   insertUser(db, newUser) {
     return db
       .insert(newUser)
-      .into("users")
+      .into("budget_users")
       .returning("*")
       .then(([user]) => user);
   },
