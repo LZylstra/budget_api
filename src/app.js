@@ -21,11 +21,6 @@ app.use(morgan(morganOption))
 app.use(helmet())
 app.use(apikey);
 
-
-app.get('/', (req, res) => {
-    res.send('Hello, world!')
-})
-
 app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
 
