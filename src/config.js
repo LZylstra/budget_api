@@ -5,6 +5,6 @@ module.exports = {
     process.env.DATABASE_URL,
   CLIENT_ID: process.env.CLIENT_ID,
   JWT_SECRET: process.env.JWT_SECRET || "purplecow",
-  JWT_EXPIRY: process.env.JWT_EXPIRY || "15m"
+  JWT_EXPIRY: process.env.JWT_EXPIRY || "60m"
 
   }
