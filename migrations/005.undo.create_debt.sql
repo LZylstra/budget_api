@@ -1,0 +1,4 @@
+ALTER TABLE payments
+  DROP COLUMN IF EXISTS debt_id;
+
+DROP TABLE IF EXISTS debt;

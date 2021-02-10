@@ -1,0 +1,6 @@
+ALTER TABLE payments
+  DROP COLUMN IF EXISTS bill_id;
+
+DROP TABLE IF EXISTS bill;
+
+DROP TYPE IF EXISTS curr_status;

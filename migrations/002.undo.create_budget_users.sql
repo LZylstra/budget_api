@@ -2,3 +2,4 @@ ALTER TABLE budget
   DROP COLUMN IF EXISTS user_id;
 
 DROP TABLE IF EXISTS budget_users;
+
