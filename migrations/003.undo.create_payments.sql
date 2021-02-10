@@ -1,6 +1,3 @@
-ALTER TABLE budget
-  DROP COLUMN IF EXISTS payment_id;
-
 DROP TABLE IF EXISTS payments;
 
 DROP TYPE IF EXISTS pay_type;
