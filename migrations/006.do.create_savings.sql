@@ -4,7 +4,8 @@ CREATE TABLE savings (
      savings_amount MONEY DEFAULT 0.00,
      goal_date TIMESTAMPTZ NOT NULL DEFAULT now(),
      goal_amount MONEY DEFAULT 0.00,
-     monthly_auto MONEY DEFAULT 0.00
+     monthly_auto MONEY DEFAULT 0.00,
+     budget_id INTEGER REFERENCES budget(budget_id) ON DELETE SET NULL
 );
 
 ALTER TABLE payments

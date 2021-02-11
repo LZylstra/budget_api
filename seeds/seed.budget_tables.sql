@@ -9,39 +9,39 @@ VALUES
 
 INSERT INTO budget (monthly_pay, additional_income, user_id)
 VALUES
-('6250.00', '150', 2),
-('8234.50', '0', 1)
+('6250.00', '150', 1),
+('8234.50', '0', 2)
 ;
 
 
-INSERT INTO bill (bill_name, bill_cost, bill_due_date, current_status)
+INSERT INTO bill (bill_name, bill_cost, bill_due_date, current_status, budget_id)
 VALUES
-('Internet', '75.00', '30', 'Paid'),
-('Phone', '45.00', '15', 'Paid'),
-('Rent', '2400', '1', 'Unpaid'),
-('Electric', '150.34', '9', 'Unpaid')
+('Internet', '75.00', '30', 'Paid', 2),
+('Phone', '45.00', '15', 'Paid', 2),
+('Rent', '2400', '1', 'Unpaid', 2),
+('Electric', '150.34', '9', 'Unpaid', 2)
 ;
 
-INSERT INTO debt(debt_name, debt_balance, debt_due_date, current_status, interest_rate, debt_min_payment)
+INSERT INTO debt(debt_name, debt_balance, debt_due_date, current_status, interest_rate, debt_min_payment, budget_id)
 VALUES
-('Student Loan', '150000.00', '9', 'Paid', '1.5', '246.00'),
-('Amex Credit Card', '35600.00', '17', 'Unpaid', '13.5', '456.00')
+('Student Loan', '150000.00', '9', 'Paid', '1.5', '246.00', 2),
+('Amex Credit Card', '35600.00', '17', 'Unpaid', '13.5', '456.00', 2)
 ;
 
-INSERT INTO savings (savings_name, savings_amount, goal_date, goal_amount, monthly_auto)
+INSERT INTO savings (savings_name, savings_amount, goal_date, goal_amount, monthly_auto, budget_id)
 VALUES
-('Emergency Savings', '1375.30', '12/30/2022', '10000.00', '75.00'),
-('Travel Savings', '364.60', '02/20/2022', '5000.00', '25.00'),
-('Car Expenses Savings', '0.30', '04/25/2021', '2000.00', '125.00')
+('Emergency Savings', '1375.30', '12/30/2022', '10000.00', '75.00', 2),
+('Travel Savings', '364.60', '02/20/2022', '5000.00', '25.00', 2),
+('Car Expenses Savings', '0.30', '04/25/2021', '2000.00', '125.00', 2)
 ;
 
-INSERT INTO payments (payment_type, savings_id, bill_id, debt_id, budget_id, payment_note, payment_date, payment_amount)
+INSERT INTO payments (payment_type, savings_id, bill_id, debt_id, payment_note, payment_date, payment_amount)
 VALUES
-('Bill', null, 4, null, 2, 'Electricity', '02/09/21', '150.34'),  
-('Debt', null, null, 1, 2, 'Student Loan', '02/03/21', '300.00'),  
-('Debt', null, null, 2, 2, 'Credit Card', '02/04/21', '600.00'),  
-('Savings', 2, null, null, 2, 'Vacation', '02/05/21', '260.00'),  
-('Bill', null, 3, null, 2, 'Rent', '02/03/21', '2400.00') 
+('Bill', null, 4, null, 'Electricity', '02/09/21', '150.34'),  
+('Debt', null, null, 1, 'Student Loan', '02/03/21', '300.00'),  
+('Debt', null, null, 2, 'Credit Card', '02/04/21', '600.00'),  
+('Savings', 2, null, null, 'Vacation', '02/05/21', '260.00'),  
+('Bill', null, 3, null, 'Rent', '02/03/21', '2400.00') 
 ;
 
 INSERT INTO category (expense_year, category_name, monthly_max, budget_id)

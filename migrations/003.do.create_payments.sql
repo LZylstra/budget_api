@@ -5,7 +5,6 @@ CREATE TABLE payments(
     payment_type pay_type NOT NULL,
     payment_note TEXT,
     payment_date TIMESTAMPTZ DEFAULT now(),
-    payment_amount MONEY DEFAULT 0.00 NOT NULL,
-    budget_id INTEGER REFERENCES budget(budget_id) ON DELETE SET NULL
+    payment_amount MONEY DEFAULT 0.00 NOT NULL
 );
 
