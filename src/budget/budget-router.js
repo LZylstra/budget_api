@@ -9,7 +9,8 @@ const BudgetRouter = express.Router();
 const serializeBudget = (budget) => ({
   id: budget.id,
   monthly_pay: budget.monthly_pay,
-  additional_income: budget.additional_income
+  additional_income: budget.additional_income,
+  user_id: budget.user_id
   
 });
 
