@@ -9,7 +9,8 @@ const BudgetRouter = express.Router();
 const serializeBudget = (budget) => ({
   id: budget.id,
   monthly_pay: budget.monthly_pay,
-  additional_income: budget.additional_income
+  additional_income: budget.additional_income,
+  user_id: budget.user_id
   
 });
 
@@ -25,14 +26,14 @@ BudgetRouter.route("/")
   });
 
 // Get budgets for the logged in user
-BudgetRouter.route("/user/:userid")
+BudgetRouter.route("/user/:user_id")
   .all(requireAuth)
   .get((req, res, next) => {
-    const { userid } = req.params;
-    BudgetService.getUserBudget(req.app.get("db"), userid)
+    const { user_id } = req.params;
+    BudgetService.getUserBudget(req.app.get("db"), user_id)
       .then((budgets) => {
         if (!budgets) {
-          logger.error(`Budget with user id ${userid} not found.`);
+          logger.error(`Budget with user id ${user_id} not found.`);
           return res.status(404).json({
             error: { message: `Budget not found` },
           });

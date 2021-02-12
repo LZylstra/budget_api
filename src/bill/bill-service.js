@@ -4,26 +4,26 @@ const BillService = {
   getAllBills(db) {
     return db.select("*").from("bill");
   },
-  getAllBudgetBills(db,id) {
+  getAllBudgetBills(db,bill_id) {
     return db
       .from("bill AS b")
       .select(
-        "b.id",
+        "b.bill_id",
         "b.bill_name",
         "b.bill_cost",
         "b.bill_due_date",
         "b.current_status",
-        "budget_id",
+        "b.budget_id",
         ...budgetFields
       )
-      .leftJoin("budget  AS bud", "budget_id", "bud.id")
-      .where("bud.id", id);
+      .leftJoin("budget  AS bud", "b.budget_id", "bud.budget_id")
+      .where("bud.budget_id", bill_id);
   },
-  getById(db, id) {
+  getById(db, bill_id) {
     return db
       .from("bill")
       .select("*")
-      .where("bill.id", id)
+      .where("bill.bill_id", bill_id)
       .first();
   },
   insertBill(db, newBill) {
@@ -35,19 +35,19 @@ const BillService = {
         return rows[0];
       });
   },
-  deleteBill(db, id) {
+  deleteBill(db, bill_id) {
     return db("bill")
-      .where({ id })
+      .where({ bill_id })
       .delete();
   },
-  updateBill(db, id, newBillFields) {
+  updateBill(db, bill_id, newBillFields) {
     return db("bill")
-      .where({ id })
+      .where({ bill_id })
       .update(newBillFields);
   },
 };
 const budgetFields = [
-  "bud.id AS budget:id",
+  "bud.budget_id AS budget:budget_id",
   "bud.user_id AS budget:user_id",
   "bud.monthly_pay AS budget:monthly_pay",
   "bud.additional_income AS budget:additional_income"

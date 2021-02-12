@@ -8,20 +8,20 @@ const BudgetService = {
     return db
       .from("budget AS b")
       .select(
-        "b.id",
+        "b.budget_id",
         "b.user_id",
         "b.monthly_pay",
         "b.additional_income",
         ...userFields
       )
       .leftJoin("budget_users AS usr", "b.user_id", "usr.id")
-      .where("usr.id", id);
+      .where("b.user_id", id);
   },
   getById(db, id) {
     return db
       .from("budget")
       .select("*")
-      .where("budget.id", id)
+      .where("budget.budget_id", id)
       .first();
   },
   insertBudget(db, newBudget) {
@@ -33,21 +33,21 @@ const BudgetService = {
         return rows[0];
       });
   },
-  deleteBudget(db, id) {
+  deleteBudget(db, budget_id) {
     return db("budget")
-      .where({ id })
+      .where({ budget_id })
       .delete();
   },
-  updateBudget(db, id, newBudgetFields) {
+  updateBudget(db, budget_id, newBudgetFields) {
     return db("budget")
-      .where({ id })
+      .where({ budget_id })
       .update(newBudgetFields);
   },
 };
 const userFields = [
   "usr.id AS budget_users:id",
   "usr.user_name AS budget_users:user_name",
-  "usr.first_name AS budget_users:full_name"
+  "usr.full_name AS budget_users:full_name"
 ];
 
 module.exports = BudgetService;
