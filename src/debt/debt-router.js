@@ -50,7 +50,7 @@ DebtRouter.route("/budget/:budget_id")
   .post(bodyParser, (req, res, next) => {
     const {
         debt_name,
-        balance,
+        debt_balance,
         debt_due_date,
         current_status,
         interest_rate,
@@ -60,7 +60,7 @@ DebtRouter.route("/budget/:budget_id")
 
     const newDebt = {
         debt_name,
-        balance,
+        debt_balance,
         debt_due_date,
         current_status,
         interest_rate,
@@ -106,7 +106,7 @@ DebtRouter.route("/:debt_id")
     const { debt_id } = req.params;
     let {
         debt_name,
-        balance,
+        debt_balance,
         debt_due_date,
         current_status,
         interest_rate,
@@ -116,7 +116,7 @@ DebtRouter.route("/:debt_id")
 
     const updatedDebt = {
         debt_name,
-        balance,
+        debt_balance,
         debt_due_date,
         current_status,
         interest_rate,
