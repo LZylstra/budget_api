@@ -21,7 +21,7 @@ const BudgetService = {
     return db
       .from("budget")
       .select("*")
-      .where("budget.id", id)
+      .where("budget.budget_id", id)
       .first();
   },
   insertBudget(db, newBudget) {
@@ -33,14 +33,14 @@ const BudgetService = {
         return rows[0];
       });
   },
-  deleteBudget(db, id) {
+  deleteBudget(db, budget_id) {
     return db("budget")
-      .where({ id })
+      .where({ budget_id })
       .delete();
   },
-  updateBudget(db, id, newBudgetFields) {
+  updateBudget(db, budget_id, newBudgetFields) {
     return db("budget")
-      .where({ id })
+      .where({ budget_id })
       .update(newBudgetFields);
   },
 };
