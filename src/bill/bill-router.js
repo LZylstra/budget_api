@@ -7,7 +7,7 @@ const BillService = require("./bill-service");
 const BillRouter = express.Router();
 
 const serializeBill = (bill) => ({
-  bill_id: bill.bill_id,
+  id: bill.id,
   bill_name: xss(bill.bill_name),
   bill_cost: bill.bill_cost,
   bill_due_date: bill.bill_due_date,
@@ -50,11 +50,9 @@ BillRouter.route("/budget/:budget_id")
       bill_name,
       bill_cost,
       bill_due_date,
-      current_status,
-      
+      current_status
     } = req.body;
     const { budget_id } = req.params;
-
     const newBill = {
         bill_name,
         bill_cost,
@@ -68,15 +66,6 @@ BillRouter.route("/budget/:budget_id")
       return res.status(400).send(`'bill_name' is required`);
     }
 
-    if (!req.body.bill_cost) {
-      logger.error(`Bill cost is required`);
-      return res.status(400).send(`'bill_cost' is required`);
-    }
-    if (!req.body.bill_due_date) {
-      logger.error(`Bill due date is required`);
-      return res.status(400).send(`'bill_due_date' is required`);
-    }
-
     BillService.insertBill(req.app.get("db"), newBill)
       .then((bill) => {
         res.status(201).location(`/`).json(serializeBill(bill));
@@ -85,14 +74,14 @@ BillRouter.route("/budget/:budget_id")
   });
 
 // Get bill by id
-BillRouter.route("/:bill_id")
+BillRouter.route("/:id")
   .all(requireAuth)
   .get((req, res, next) => {
-    const { bill_id } = req.params;
-    BillService.getById(req.app.get("db"), bill_id)
+    const { id } = req.params;
+    BillService.getById(req.app.get("db"), id)
       .then((bill) => {
         if (!bill) {
-          logger.error(`Bill with id ${bill_id} not found.`);
+          logger.error(`Bill with id ${id} not found.`);
           return res.status(404).json({
             error: { message: `Bill Not Found` },
           });
@@ -102,7 +91,7 @@ BillRouter.route("/:bill_id")
       .catch(next);
   })
   .patch(bodyParser, (req, res, next) => {
-    const { bill_id } = req.params;
+    const { id } = req.params;
     let {
         bill_name,
         bill_cost,
@@ -120,10 +109,10 @@ BillRouter.route("/:bill_id")
     };
 
 
-    BillService.updateBill(req.app.get("db"), bill_id, updatedBill)
+    BillService.updateBill(req.app.get("db"), id, updatedBill)
       .then((bill) => {
         if (!bill) {
-          logger.error(`Bill with id ${bill_id} not found.`);
+          logger.error(`Bill with id ${id} not found.`);
           return res.status(404).json({
             error: { message: `Bill Not Found` },
           });
@@ -133,9 +122,9 @@ BillRouter.route("/:bill_id")
       .catch(next);
   })
   .delete((req, res, next) => {
-    const { bill_id } = req.params;
+    const { id } = req.params;
 
-    BillService.deleteBill(req.app.get("db"), bill_id)
+    BillService.deleteBill(req.app.get("db"), id)
       .then((numRowsAffected) => {
         res.status(204).end();
       })

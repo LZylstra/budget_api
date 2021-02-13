@@ -54,10 +54,5 @@ const budgetFields = [
   "bud.additional_income AS budget:additional_income"
 ];
 
-const userFields = [
-    "usr.id AS budget_users:id",
-    "usr.user_name AS budget_users:user_name",
-    "usr.first_name AS budget_users:full_name"
-  ];
 
 module.exports = SavingsService;
