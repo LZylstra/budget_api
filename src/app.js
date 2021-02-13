@@ -11,6 +11,7 @@ const debtRouter = require("./debt/debt-router")
 const savingsRouter = require("./savings/savings-router")
 const categoryRouter = require("./category/category-router")
 const expenseRouter = require("./expense/expense-router")
+const paymentsRouter = require("./payments/payments-router")
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
@@ -28,6 +29,7 @@ app.use(helmet())
 //app.use(apikey);
 
 
+app.use("/api/payments", paymentsRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/expense", expenseRouter);
 app.use("/api/savings", savingsRouter);
