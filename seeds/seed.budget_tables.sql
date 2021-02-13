@@ -44,7 +44,7 @@ VALUES
 ('Bill', null, 3, null, 'Rent', '02/03/21', '2400.00') 
 ;
 
-INSERT INTO category (expense_year, category_name, monthly_max, budget_id)
+INSERT INTO category (category_year, category_name, monthly_max, budget_id)
 VALUES
 ('2021', 'Food', '300.00', 2),
 ('2021', 'Shopping', '150.00', 2),
