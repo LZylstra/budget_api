@@ -7,7 +7,7 @@ const BudgetService = require("./budget-service");
 const BudgetRouter = express.Router();
 
 const serializeBudget = (budget) => ({
-  id: budget.id,
+  budget_id: budget.budget_id,
   monthly_pay: budget.monthly_pay,
   additional_income: budget.additional_income,
   user_id: budget.user_id
