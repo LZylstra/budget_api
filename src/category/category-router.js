@@ -7,7 +7,7 @@ const CategoryService = require("./category-service");
 const CategoryRouter = express.Router();
 
 const serializeCategory = (category) => ({
-  category_id: category.id,
+  category_id: category.category_id,
   category_name: xss(category.category_name),
   category_year: xss(category.category_year),
   monthly_max: category.monthly_max,
