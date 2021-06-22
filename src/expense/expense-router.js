@@ -9,7 +9,7 @@ const ExpenseRouter = express.Router();
 const serializeExpense = (expense) => ({
   expense_id: expense.expense_id,
   expense_desc: xss(expense.expense_desc),
-  expense_amount: expense.amount,
+  expense_amount: expense.expense_amount,
   expense_date: expense.expense_date,
   expense_type: xss(expense.expense_type),
   category_id: expense.category_id

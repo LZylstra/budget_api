@@ -9,8 +9,8 @@ const CategoryService = {
       .from("category AS c")
       .select(
         "c.category_id",
+        "c.category_year",
         "c.category_name",
-        "c.expense_year",
         "c.monthly_max",
         "c.budget_id",
         ...budgetFields
@@ -51,6 +51,14 @@ const budgetFields = [
   "bud.monthly_pay AS budget:monthly_pay",
   "bud.additional_income AS budget:additional_income"
 ];
+
+// const expenseFields = [
+//   "exp.expense_id AS expense:expense_id",
+//   "exp.expense_amount AS expense:user_id",
+//   "exp.monthly_pay AS budget:monthly_pay",
+//   "exp.additional_income AS budget:additional_income"
+// ];
+
 
 
 module.exports = CategoryService;
