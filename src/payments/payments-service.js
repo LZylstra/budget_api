@@ -34,7 +34,7 @@ const PaymentService = {
     .leftJoin("debt", "p.debt_id", "debt.debt_id")
     .where("p.debt_id", debt_id);
   },
-  getAllSavingsPayments(db,savings_id) {
+  getAllAccountPayments(db,account_id) {
     return db
     .from("payments AS p")
     .select(
@@ -43,11 +43,11 @@ const PaymentService = {
       "p.payment_note",
       "p.payment_date",
       "p.payment_amount",
-      "p.savings_id",
-      ...savingsFields
+      "p.account_id",
+      ...accountFields
     )
-    .leftJoin("savings", "p.savings_id", "savings.savings_id")
-    .where("p.savings_id", savings_id);
+    .leftJoin("account", "p.account_id", "account.account_id")
+    .where("p.account_id", account_id);
   },
   getById(db, payments_id) {
     return db
@@ -103,13 +103,13 @@ const billFields = [
       "debt.budget_id"
   ]
 
-  const savingsFields = [
-      "savings.savings_id",
-      "savings.savings_name",
-      "savings.goal_date",
-      "savings.goal_amount",
-      "savings.monthly_auto",
-      "savings.budget_id"
+  const accountFields = [
+      "account.account_id",
+      "account.account_name",
+      "account.goal_date",
+      "account.goal_amount",
+      "account.monthly_auto",
+      "account.budget_id"
   ]
 
 module.exports = PaymentService;

@@ -14,7 +14,7 @@ const serializePayment = (payments) => ({
   payment_amount: payments.payment_amount,
   debt_id: payments.debt_id,
   bill_id: payments.bill_id,
-  savings_id: payments.savings_id
+  account_id: payments.account_id
 });
 
 // Get all payments
@@ -134,15 +134,15 @@ PaymentRouter.route("/debt/:debt_id")
       .catch(next);
   });
 
-  // Get all payments for a given savings
-PaymentRouter.route("/savings/:savings_id")
+  // Get all payments for a given account
+PaymentRouter.route("/account/:account_id")
 .all(requireAuth)
 .get((req, res, next) => {
-  const { savings_id } = req.params;
-  PaymentService.getAllSavingsPayments(req.app.get("db"), savings_id)
+  const { account_id } = req.params;
+  PaymentService.getAllaccountPayments(req.app.get("db"), account_id)
     .then((payments) => {
       if (!payments) {
-        logger.error(`Payment with saving id ${savings_id} not found.`);
+        logger.error(`Payment with account id ${account_id} not found.`);
         return res.status(404).json({
           error: { message: `Payment not found` },
         });
@@ -159,16 +159,16 @@ PaymentRouter.route("/savings/:savings_id")
       payment_date,
       payment_amount
   } = req.body;
-  const { savings_id } = req.params;
+  const { account_id } = req.params;
   const newPayment = {
       payment_type,
       payment_note,
       payment_date,
       payment_amount,
-      savings_id
+      account_id
   };
 
-  // !!! need to add error checking to be sure type is the expected savings type
+  // !!! need to add error checking to be sure type is the expected account type
 
   if (!req.body.payment_type) {
     logger.error(`Payment type is required`);
@@ -214,7 +214,7 @@ PaymentRouter.route("/:id")
         payment_date,
         payment_amount,
         bill_id,
-        savings_id,
+        account_id,
         debt_id
     } = req.body;
 
@@ -224,7 +224,7 @@ PaymentRouter.route("/:id")
         payment_date,
         payment_amount,
         bill_id,
-        savings_id,
+        account_id,
         debt_id
     };
 

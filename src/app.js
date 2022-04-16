@@ -8,7 +8,7 @@ const usersRouter = require("./users/users-router");
 const budgetRouter = require("./budget/budget-router")
 const billRouter = require("./bill/bill-router")
 const debtRouter = require("./debt/debt-router")
-const savingsRouter = require("./savings/savings-router")
+const accountRouter = require("./account/account-router")
 const categoryRouter = require("./category/category-router")
 const expenseRouter = require("./expense/expense-router")
 const paymentsRouter = require("./payments/payments-router")
@@ -32,7 +32,7 @@ app.use(helmet())
 app.use("/api/payments", paymentsRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/expense", expenseRouter);
-app.use("/api/savings", savingsRouter);
+app.use("/api/accounts", accountRouter);
 app.use("/api/debt", debtRouter);
 app.use("/api/bill", billRouter);
 app.use("/api/budget", budgetRouter);

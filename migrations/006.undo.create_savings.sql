@@ -1,4 +1,0 @@
-ALTER TABLE payments
-  DROP COLUMN IF EXISTS savings_id;
-
-DROP TABLE IF EXISTS savings;

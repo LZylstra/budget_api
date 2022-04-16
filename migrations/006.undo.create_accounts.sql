@@ -1,0 +1,6 @@
+ALTER TABLE payments
+  DROP COLUMN IF EXISTS account_id;
+
+DROP TABLE IF EXISTS accounts;
+
+DROP TYPE IF EXISTS acc_type;

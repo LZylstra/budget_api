@@ -1,4 +1,4 @@
-CREATE TYPE pay_type AS ENUM ('Bill', 'Savings', 'Debt');
+CREATE TYPE pay_type AS ENUM ('Bill', 'Savings', 'Checking', 'Debt');
 
 CREATE TABLE payments(
     payments_id SERIAL PRIMARY KEY,
