@@ -9,7 +9,7 @@ const DebtRouter = express.Router();
 const serializeDebt = (debt) => ({
   debt_id: debt.debt_id,
   debt_name: xss(debt.debt_name),
-  debt_balance: debt.balance,
+  debt_balance: debt.debt_balance,
   debt_due_date: debt.debt_due_date,
   current_status: debt.current_status,
   interest_rate: debt.interest_rate,
