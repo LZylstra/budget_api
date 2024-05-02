@@ -1,4 +1,10 @@
-CREATE TYPE acc_type AS ENUM ('Checking', 'Savings');
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'acc_type') THEN
+        CREATE TYPE acc_type AS ENUM ('Checking', 'Savings');
+    END IF;
+END$$;
+
 
 CREATE TABLE accounts (
      account_id SERIAL PRIMARY KEY,
