@@ -7,6 +7,7 @@
     "test": "mocha --require test/setup.js",
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
+    "server": "src/nodemon server.js",
     "migrate": "postgrator --config postgrator-config.js"
   },
   "keywords": [],

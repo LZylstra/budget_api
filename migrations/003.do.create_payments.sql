@@ -1,4 +1,9 @@
-CREATE TYPE pay_type AS ENUM ('Bill', 'Savings', 'Checking', 'Debt');
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'pay_type') THEN
+        CREATE TYPE pay_type AS ENUM ('Bill', 'Savings', 'Checking', 'Debt');
+    END IF;
+END$$;
 
 CREATE TABLE payments(
     payments_id SERIAL PRIMARY KEY,

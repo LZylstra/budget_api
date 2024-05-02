@@ -1,4 +1,9 @@
-CREATE TYPE curr_status AS ENUM ('Unpaid', 'Paid', 'Late', 'Due', 'On Hold');
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'curr_status') THEN
+        CREATE TYPE curr_status AS ENUM ('Unpaid', 'Paid', 'Late', 'Due', 'On Hold');
+    END IF;
+END$$;
 
 CREATE TABLE bill (
      bill_id SERIAL PRIMARY KEY,
